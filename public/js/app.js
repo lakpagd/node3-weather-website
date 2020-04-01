@@ -1,5 +1,3 @@
-console.log('Client side javascript file is loaded.')
-
 // fetch('https://api.darksky.net/forecast/ceba6af559bf7199c167ae1a05a5ff5b/53.3425,-6.26583').then((response) => {
 //     response.json().then((data) => {
 //         // if (data.error) {
