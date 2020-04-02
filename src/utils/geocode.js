@@ -8,17 +8,13 @@ const geocode = (address, callback) => {
         if (error) {
             callback('Unable to connect to Geocode services!')
         } else if (body.features.length === 0) {
-            callback('No matching address found.', undefined)
+            callback('No matching address found. Please try another search.', undefined)
         } else {
             callback(undefined, {
                 latitude: body.features[0].center[1],
                 longitude: body.features[0].center[0],
                 location: body.features[0].place_name
             })
-            // console.log(body.features[0].center[1])
-            // console.log(body.features[0].center[0]);
-            // console.log(body.features[0].place_name);
-            // console.log(body.features[0]);
         }
 
     })

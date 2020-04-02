@@ -1,32 +1,32 @@
-// fetch('https://api.darksky.net/forecast/ceba6af559bf7199c167ae1a05a5ff5b/53.3425,-6.26583').then((response) => {
-//     response.json().then((data) => {
-//         // if (data.error) {
-//         //     return console.log(error)
-//         // } else {
-//         //     console.log(data.latitude)
-//         //     // console.log(data.forecast);
-            
-//         // }
-//         console.log(data);
-        
-//     })
-// })
-
 const weatherForm = document.querySelector('form')
-const search = document.querySelector('input')
-const messageOne = document.querySelector('#message-1') // # for id, . for class
-const messageTwo = document.querySelector('#message-2')
+const seachForm = document.querySelector('input')
+const messageOne = document.querySelector('#msg-1') // {# for ID, . for CLASS} 
+const messageTwo = document.querySelector('#msg-2')
 
-// messageOne.textContent = ''
+
 
 weatherForm.addEventListener('submit', (e) => { // e = event
     e.preventDefault()
 
-    const query = search.value
+    const location = seachForm.value
 
-    messageOne.textContent = 'Loading...'
-    messageTwo.textContent = 'sdf'
+    if (!location) {
+        messageOne.textContent = 'No address found. Please enter address.'
+    } else {
+        messageOne.textContent = 'Loading Weather App...'
+        messageTwo.textContent = ''
+        
+        fetch('http://localhost:3000/weather?address=' + location).then((response) => {
+            response.json().then((data) => {
+                if (data.error) {
+                    messageOne.textContent = data.error
+                } else {
+                    messageOne.textContent = data.location
+                    messageTwo.textContent = data.forecast
+                    
+                }
+
+            })
+        })
+    }
 })
-
-
-
